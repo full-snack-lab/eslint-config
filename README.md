@@ -1,6 +1,6 @@
 # `@fullsnacklab/eslint-config`
 
-> Opinionated, modular ESLint flat config for the `@fullsnacklab` org —
+> Opinionated, modular ESLint flat config —
 > Panda CSS aware, Astro ready, TS 6 first.
 
 [![npm](https://img.shields.io/npm/v/@fullsnacklab/eslint-config?color=cb3837)](https://www.npmjs.com/package/@fullsnacklab/eslint-config)
@@ -45,9 +45,8 @@ for the wiring diagram and [Usage](./docs/USAGE.md) for advanced composition.
 
 ## Why this exists
 
-We kept copy-pasting the same flat config across `hr-puffin-stuff`,
-`hr-puffin-stuffo-*`, `hr-puffin-stuff`, and half a dozen Astro experiments. Drift
-ensued. This package is the source of truth: one place to add a rule, fix a
+Copy-pasting the same flat config across apps and Astro experiments leads to
+drift. This package is the source of truth: one place to add a rule, fix a
 selector, or upgrade a peer dependency, and every consumer picks it up on
 their next `bun install`.
 
@@ -231,7 +230,7 @@ Full wiring diagram and data-flow in [ARCHITECTURE.md](./docs/ARCHITECTURE.md).
 | [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) | Wiring diagram, data flow, why each preset exists |
 | [docs/USAGE.md](./docs/USAGE.md) | Every option, with examples |
 | [docs/PANDAS-POLICY.md](./docs/PANDAS-POLICY.md) | How the dynamic JSX utility ban is derived, and how to extend it |
-| [docs/MIGRATION.md](./docs/MIGRATION.md) | Drop-in for the legacy `eslint.config.{js,mjs}` from `perths-best-web` |
+| [docs/MIGRATION.md](./docs/MIGRATION.md) | Drop-in for a legacy inline `eslint.config.{js,mjs}` + sibling Panda policy files |
 
 ---
 
@@ -240,7 +239,7 @@ Full wiring diagram and data-flow in [ARCHITECTURE.md](./docs/ARCHITECTURE.md).
 ```bash
 bun run build       # compile TS → dist/
 bun run typecheck   # tsc --noEmit
-bun run test        # bun test (smoke tests against a real Panda project)
+bun run test        # bun test (smoke tests against a checked-in Panda fixture)
 bun run lint        # eslint on this package's own sources
 bun run clean       # remove dist/ and .tsbuildinfo
 ```

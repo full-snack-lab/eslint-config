@@ -1,10 +1,10 @@
 /**
  * Resolve the filesystem paths to Panda's generated `.d.ts` artefacts.
  *
- * The original config in `perths-best-web` hard-coded paths relative to
- * `process.cwd()`. This module lifts that into a typed, overridable surface so
- * the same package can be consumed by monorepos, multi-app workspaces, and
- * projects that colocate `styled-system` somewhere unusual.
+ * Earlier inline configs often hard-coded paths relative to `process.cwd()`.
+ * This module lifts that into a typed, overridable surface so the same
+ * package can be consumed by monorepos, multi-app workspaces, and projects
+ * that colocate `styled-system` somewhere unusual.
  *
  * @packageDocumentation
  */

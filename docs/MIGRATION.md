@@ -1,12 +1,12 @@
 # Migration
 
-Drop-in for the legacy `eslint.config.mjs` from `perths-best-web` (and any
-other repo that copy-pasted it).
+Drop-in for a legacy inline `eslint.config.mjs` that lived next to sibling
+Panda policy files (and any other repo that copy-pasted the same shape).
 
 ## Before
 
 ```js
-// eslint.config.mjs (perths-best-web)
+// eslint.config.mjs (your-app)
 import typescriptEslintParser from "@typescript-eslint/parser";
 import { defineConfig } from "eslint/config";
 import eslintPluginAstro from "eslint-plugin-astro";
@@ -19,7 +19,7 @@ const unicornRules = { /* … */ };
 const styleRules = { /* … */ };
 
 export default defineConfig([
-  { ignores: ["dist", "node_modules", ".astro", ".cursor", "styled-system", "styled-system-studio", "prototype-website"] },
+  { ignores: ["dist", "node_modules", ".astro", ".cursor", "styled-system", "styled-system-studio", "legacy-site"] },
   ...eslintPluginAstro.configs.recommended,
   { files: ["**/*.{js,mjs,cjs}"], /* … */ },
   { files: ["**/*.{ts,tsx}"], ignores: ["**/*.astro/**"], /* … */ },
@@ -38,7 +38,7 @@ Plus two sibling files (`eslint.panda-style-policy.js`,
 import { createConfig } from "@fullsnacklab/eslint-config";
 
 export default await createConfig({
-  ignores: [".cursor", "prototype-website"], // extras only
+  ignores: [".cursor", "legacy-site"], // extras only
 });
 ```
 
@@ -73,8 +73,8 @@ rm eslint.panda-style-policy.js eslint.panda-jsx-props.js
 | `globals.builtin + node` for JS, `+ browser` for TS | Same |
 | `@typescript-eslint/parser` for TS/TSX with `ecmaFeatures.jsx` | Same |
 
-Verified against `perths-best-web`: 20 lint errors on the same input,
-matching exactly.
+Verified on a real Panda + Astro app: lint diagnostics matched the legacy
+inline config on the same input.
 
 ## What changed (and why)
 
@@ -123,10 +123,10 @@ now in `panda/style-policy.ts` as `buildPandaStylePolicy`.
 
 ### Ignores
 
-The legacy ignored `.cursor` and `prototype-website` — keep those in
-your `createConfig({ ignores: […] })` call. The new package adds `.next`,
-`.turbo`, `.vercel`, `.output`, `build`, `coverage`, and `**/*.generated.ts`
-by default; remove from your list if you don't want them.
+The legacy ignored `.cursor` and project-local folders (e.g. `legacy-site`) —
+keep those in your `createConfig({ ignores: […] })` call. The new package
+adds `.next`, `.turbo`, `.vercel`, `.output`, `build`, `coverage`, and
+`**/*.generated.ts` by default; remove from your list if you don't want them.
 
 ## Custom-preset escape hatch
 
@@ -162,6 +162,6 @@ git checkout HEAD~ -- eslint.config.js
 bun remove @fullsnacklab/eslint-config
 ```
 
-Then file an issue with the selector that fired unexpectedly — the
-migration is verified for `perths-best-web` but every project's Panda
-emission is slightly different.
+Then file an issue with the selector that fired unexpectedly — migration
+parity was verified on a real Panda app, but every project's Panda emission
+is slightly different.

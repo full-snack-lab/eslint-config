@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   flat-config array covering JavaScript, TypeScript, Astro, theme, and
   Panda CSS in a single call.
 - **JavaScript preset** — `eslint-plugin-unicorn` (recommended +
-  org-specific overrides for `no-null`, `name-replacements`,
+  package-specific overrides for `no-null`, `name-replacements`,
   `consistent-boolean-name`, `filename-case`, `max-nested-calls`,
   `prefer-ternary`) plus `@pandacss/eslint-plugin` recommended when
   installed.
@@ -52,7 +52,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
     `styled-system/dist/patterns/`.
   - `buildPandaStylePolicy()` — Box ban + JSX utility ban.
 - **Smoke tests** (`bun test`) — verify catalog parsing, default
-  controls, and policy emission against a real Panda project.
+  controls, and policy emission against a checked-in Panda-shaped
+  fixture.
 - **Documentation**:
   - `README.md` — overview, install, quick start, common customisations.
   - `docs/ARCHITECTURE.md` — wiring diagram, data flow, per-preset
@@ -60,11 +61,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   - `docs/USAGE.md` — every option with examples.
   - `docs/PANDAS-POLICY.md` — how the dynamic ban list is derived and
     extended.
-  - `docs/MIGRATION.md` — drop-in for `perths-best-web`'s legacy config.
-
-### Verified against
-
-- `perths-best-web` — 20 lint errors match the legacy config exactly.
+  - `docs/MIGRATION.md` — drop-in for a legacy inline flat config +
+    sibling Panda policy files.
 
 ### Notes
 

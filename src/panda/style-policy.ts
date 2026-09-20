@@ -16,7 +16,7 @@ const NO_RAW_CSS =
   "Raw CSS is banned. Use Panda style props / textStyle / layerStyle / colorPalette / recipes — not css(), inline styles, or <style>.";
 
 const NO_PATTERN_FN =
-  "Pattern functions are banned. Use the JSX pattern component (e.g. <Stack>) from @design-system/styled-system/jsx — not stack().";
+  "Pattern functions are banned. Use the JSX pattern component (e.g. <Stack>) from /styled-system/jsx — not stack().";
 
 /**
  * Discover the names of Panda pattern functions from the generated
@@ -255,6 +255,6 @@ export const noDottedStyleNamePolicy: NoRestrictedSyntaxEntry[] = [
 
 /**
  * @deprecated Use `noRawCssPolicy` directly. Retained for backwards
- * compatibility with the `perths-best-web` config during migration.
+ * compatibility with earlier inline configs during migration.
  */
 export const astroNoCssPolicy: NoRestrictedSyntaxEntry[] = noRawCssPolicy;

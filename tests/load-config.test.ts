@@ -23,8 +23,8 @@ import { buildJsxUtilityPropPolicy } from "../src/panda/jsx-props.ts";
 import { escapeForSelectorRegex } from "../src/lib/regex.ts";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-// `perths-best-web` is colocated with `eslint-config` inside `full-snack-lab`.
-const PERTHS_BEST_WEB = path.resolve(HERE, "..", "..", "perths-best", "perths-best-web");
+/** Checked-in Panda-shaped fixture — no sibling app required. */
+const FIXTURE_ROOT = path.resolve(HERE, "fixtures");
 
 describe("regex helpers", () => {
   it("escapes regex metacharacters", () => {
@@ -55,8 +55,8 @@ describe("createConfig", () => {
 });
 
 describe("catalog", () => {
-  it("loads the catalog from perths-best-web", () => {
-    const paths = resolvePandaPaths({}, PERTHS_BEST_WEB);
+  it("loads the catalog from the fixture styled-system", () => {
+    const paths = resolvePandaPaths({}, FIXTURE_ROOT);
     const catalog = loadCatalog(paths);
     expect(catalog.utility.size).toBeGreaterThan(10);
     expect(catalog.tokenCategories).toContain("colors");
@@ -66,7 +66,7 @@ describe("catalog", () => {
 
 describe("controls", () => {
   it("defaults everything to false", () => {
-    const paths = resolvePandaPaths({}, PERTHS_BEST_WEB);
+    const paths = resolvePandaPaths({}, FIXTURE_ROOT);
     const catalog = loadCatalog(paths);
     const controls = buildControls(catalog, DEFAULT_CONTROLS);
     expect(controls.props.textStyle).toBe(true);
@@ -79,7 +79,7 @@ describe("controls", () => {
 
 describe("jsx-prop policy", () => {
   it("emits at least one selector for non-whitelisted utility props", () => {
-    const paths = resolvePandaPaths({}, PERTHS_BEST_WEB);
+    const paths = resolvePandaPaths({}, FIXTURE_ROOT);
     const catalog = loadCatalog(paths);
     const controls = buildControls(catalog, DEFAULT_CONTROLS);
     const policy = buildJsxUtilityPropPolicy(catalog, controls, paths);
@@ -89,7 +89,7 @@ describe("jsx-prop policy", () => {
   });
 
   it("respects whitelist overrides", () => {
-    const paths = resolvePandaPaths({}, PERTHS_BEST_WEB);
+    const paths = resolvePandaPaths({}, FIXTURE_ROOT);
     const catalog = loadCatalog(paths);
     const controls = buildControls(catalog, {
       props: { background: true },

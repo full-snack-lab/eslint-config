@@ -264,11 +264,13 @@ required.
 
 `bun test` runs the smoke tests in `tests/`. They:
 
-1. Load the catalog from a sibling Panda project (default: `perths-best-web`).
+1. Load the catalog from a checked-in Panda-shaped fixture under
+   `tests/fixtures/`.
 2. Verify default controls (composition levers allowed, raw props banned).
 3. Verify the JSX prop policy emits at least one selector.
 4. Verify whitelist overrides take effect (e.g. `background: true` removes
    `background` from the ban list).
 
-The smoke tests run against a real `styled-system/dist` so any Panda emission
-drift surfaces immediately. CI-friendly because they don't need a network.
+The smoke tests run against fixture `styled-system/dist` artefacts so
+catalog-parser drift surfaces immediately, without needing a sibling app.
+CI-friendly because they don't need a network.

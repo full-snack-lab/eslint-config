@@ -1,7 +1,7 @@
 {
   "name": "@fullsnacklab/eslint-config",
   "version": "0.1.0",
-  "description": "Opinionated, modular ESLint flat config for @fullsnacklab — Panda CSS aware, Astro ready, TS6 first.",
+  "description": "Opinionated, modular ESLint flat config — Panda CSS aware, Astro ready, TS6 first.",
   "type": "module",
   "sideEffects": false,
   "engines": {
