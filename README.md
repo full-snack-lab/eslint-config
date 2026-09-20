@@ -3,9 +3,9 @@
 > Opinionated, modular ESLint flat config for the `@fullsnacklab` org —
 > Panda CSS aware, Astro ready, TS 6 first.
 
-[![Private](https://img.shields.io/badge/license-UNLICENSED-red)](./LICENSE)
+[![npm](https://img.shields.io/npm/v/@fullsnacklab/eslint-config?color=cb3837)](https://www.npmjs.com/package/@fullsnacklab/eslint-config)
 [![Node](https://img.shields.io/badge/node-%E2%89%A522.12-339933)](https://nodejs.org)
-[![ESLint](https://img.shields.io/badge/eslint-10.x-4b32c3)](https://eslint.org)
+[![ESLint](https://img.shields.io/badge/eslint-%E2%89%A510.4-4b32c3)](https://eslint.org)
 
 ---
 
@@ -78,16 +78,21 @@ their next `bun install`.
 bun add -D @fullsnacklab/eslint-config
 ```
 
-Peer dependencies (most projects already have these):
+Required peer:
 
 ```bash
-bun add -D eslint @typescript-eslint/parser eslint-plugin-unicorn globals
-bun add -D eslint-plugin-astro                # only for Astro projects
-bun add -D @pandacss/dev @pandacss/eslint-plugin  # only for Panda projects
+bun add -D eslint@>=10.4
 ```
 
-Optional peer deps are detected at runtime — the package never crashes if
-Astro or Panda aren't installed; it just omits their presets.
+Bundled with this package (no need to install separately):
+`eslint-plugin-unicorn`, `globals`, `@typescript-eslint/parser`.
+
+Optional peers — detected at runtime; omitted presets when missing:
+
+```bash
+bun add -D eslint-plugin-astro                    # Astro projects
+bun add -D @pandacss/eslint-plugin @pandacss/dev  # Panda projects
+```
 
 ---
 

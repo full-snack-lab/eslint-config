@@ -9,9 +9,9 @@
  * // eslint.config.mjs
  * import { createConfig } from "@fullsnacklab/eslint-config";
  *
- * export default createConfig({
+ * export default await createConfig({
  *   panda: {
- *     paths: { styledSystem: "./styled-system/dist" },
+ *     paths: { typesRoot: "./styled-system/dist/types" },
  *   },
  * });
  * ```

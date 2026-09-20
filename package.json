@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "Opinionated, modular ESLint flat config for @fullsnacklab — Panda CSS aware, Astro ready, TS6 first.",
   "type": "module",
-  "private": true,
   "sideEffects": false,
   "engines": {
     "node": ">=22.12.0"
@@ -36,36 +35,36 @@
     "dev": "tsc -p tsconfig.build.json --watch",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "clean": "rm -rf dist .tsbuildinfo",
+    "prelint": "bun run build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "bun test"
+    "test": "bun test",
+    "prepublishOnly": "bun run clean && bun run build && bun run typecheck && bun test"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
-    "eslint": "^9.0.0 || ^10.0.0",
-    "typescript": ">=5.0.0"
-  },
-  "dependencies": {
-    "@typescript-eslint/parser": "^8.70.0",
-    "eslint-plugin-astro": "^3.2.1",
-    "eslint-plugin-unicorn": "^76.0.0",
-    "globals": "^17.12.0"
+    "eslint": ">=10.4.0",
+    "typescript": ">=5.0.0",
+    "eslint-plugin-astro": "^3.0.0",
+    "@pandacss/eslint-plugin": "^0.3.0"
   },
   "peerDependenciesMeta": {
     "typescript": {
       "optional": true
     },
-    "@typescript-eslint/parser": {
-      "optional": true
-    },
     "eslint-plugin-astro": {
-      "optional": true
-    },
-    "@pandacss/dev": {
       "optional": true
     },
     "@pandacss/eslint-plugin": {
       "optional": true
     }
+  },
+  "dependencies": {
+    "@typescript-eslint/parser": "^8.70.0",
+    "eslint-plugin-unicorn": "^76.0.0",
+    "globals": "^17.12.0"
   },
   "devDependencies": {
     "@pandacss/dev": "^1.12.1",
@@ -74,6 +73,7 @@
     "@types/bun": "^1.4.2",
     "@types/node": "^24.5.0",
     "eslint": "^10.11.0",
+    "eslint-plugin-astro": "^3.2.1",
     "typescript": "^6"
   },
   "keywords": [
@@ -83,5 +83,14 @@
     "panda-css",
     "astro",
     "fullsnacklab"
-  ]
+  ],
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/full-snack-lab/eslint-config.git"
+  },
+  "bugs": {
+    "url": "https://github.com/full-snack-lab/eslint-config/issues"
+  },
+  "homepage": "https://github.com/full-snack-lab/eslint-config#readme"
 }

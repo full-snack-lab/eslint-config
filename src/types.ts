@@ -7,7 +7,7 @@
  * @packageDocumentation
  */
 
-import type { ConfigWithExtends } from "@eslint/config-helpers";
+import type { Linter } from "eslint";
 
 /**
  * A single entry accepted by `no-restricted-syntax`.
@@ -112,10 +112,9 @@ export interface JsxUtilityControlsOverride {
 }
 
 /**
- * Single flat-config entry, with `extends` support enabled (the
- * `defineConfig()` shape).
+ * Single flat-config entry.
  *
- * Re-exported so consumers composing custom presets get the same type
- * ESLint itself uses internally.
+ * Typed against ESLint's own `Linter.Config` so consumers only need the
+ * `eslint` peer dependency — no extra `@eslint/config-helpers` import.
  */
-export type EslintConfig = ConfigWithExtends;
+export type EslintConfig = Linter.Config;

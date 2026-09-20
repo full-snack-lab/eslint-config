@@ -12,6 +12,7 @@ import { describe, expect, it } from "bun:test";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { createConfig } from "../src/create-config.ts";
 import { loadCatalog } from "../src/panda/catalog.ts";
 import { resolvePandaPaths } from "../src/panda/paths.ts";
 import {
@@ -30,6 +31,26 @@ describe("regex helpers", () => {
     expect(escapeForSelectorRegex("foo.bar")).toBe("foo\\.bar");
     expect(escapeForSelectorRegex("a+b")).toBe("a\\+b");
     expect(escapeForSelectorRegex("safe_name")).toBe("safe_name");
+  });
+});
+
+describe("createConfig", () => {
+  it("returns a flat-config array without a Panda catalog", async () => {
+    const config = await createConfig({ astro: false });
+    expect(Array.isArray(config)).toBe(true);
+    expect(config.length).toBeGreaterThan(0);
+    expect(config[0]).toHaveProperty("ignores");
+  });
+
+  it("includes Astro recommended when the peer plugin is installed", async () => {
+    const config = await createConfig();
+    const files = config.flatMap((entry) => {
+      const value = entry.files;
+      if (typeof value === "string") return [value];
+      if (Array.isArray(value)) return value.map(String);
+      return [];
+    });
+    expect(files.some((pattern) => pattern.includes("astro"))).toBe(true);
   });
 });
 

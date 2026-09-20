@@ -4,7 +4,19 @@ All notable changes to `@fullsnacklab/eslint-config` are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [0.1.0] — 2026-09-19
+## [0.1.0] — 2026-09-21
+
+### Fixed
+
+- Removed leftover legacy consumer files (`eslint.panda-*.js`,
+  `tests/eslint.config.js`) that duplicated `src/` and broke
+  `bun run lint`.
+- Dogfood `eslint.config.mjs` via `createConfig` from `dist/`.
+- Corrected peer dependency surface: `eslint >=10.4` (unicorn 76),
+  optional Astro / Panda peers; dropped `"private": true` so the
+  scoped package can publish with `publishConfig.access=public`.
+- Typed `EslintConfig` against `Linter.Config` instead of
+  `@eslint/config-helpers`.
 
 ### Added
 
@@ -56,9 +68,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Notes
 
-- Private package (UNLICENSED). Internal use only within `@fullsnacklab`.
-- Requires Node ≥ 22.12.
-- `eslint@^10` is the supported runtime; `^9` should also work but is
-  untested in CI.
+- UNLICENSED — internal use within `@fullsnacklab`; published as a
+  public scoped package for org install convenience.
+- Requires Node ≥ 22.12 (develop against Node 24).
+- Requires ESLint ≥ 10.4 (peer of `eslint-plugin-unicorn@76`).
 - TypeScript ≥ 5.0 is supported; TS 6 is the version this package is
   authored against.

@@ -118,8 +118,3 @@ export function buildPandaAstroPolicy(
   const noCssOrPatternFn = buildCombinedNoCssOrPatternFnPolicy(paths);
   return [...pandaStylePolicy, ...noCssOrPatternFn];
 }
-
-/**
- * Re-export the Panda plugin factory so `createConfig` can wire it into the
- * JS / TS presets without re-importing the plugin.
- */
