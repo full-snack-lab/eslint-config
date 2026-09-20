@@ -1,0 +1,87 @@
+{
+  "name": "@fullsnacklab/eslint-config",
+  "version": "0.1.0",
+  "description": "Opinionated, modular ESLint flat config for @fullsnacklab — Panda CSS aware, Astro ready, TS6 first.",
+  "type": "module",
+  "private": true,
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./panda": {
+      "types": "./dist/panda/index.d.ts",
+      "import": "./dist/panda/index.js"
+    },
+    "./presets": {
+      "types": "./dist/presets/index.d.ts",
+      "import": "./dist/presets/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "docs"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "dev": "tsc -p tsconfig.build.json --watch",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist .tsbuildinfo",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "bun test"
+  },
+  "peerDependencies": {
+    "eslint": "^9.0.0 || ^10.0.0",
+    "typescript": ">=5.0.0"
+  },
+  "dependencies": {
+    "@typescript-eslint/parser": "^8.70.0",
+    "eslint-plugin-astro": "^3.2.1",
+    "eslint-plugin-unicorn": "^76.0.0",
+    "globals": "^17.12.0"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    },
+    "@typescript-eslint/parser": {
+      "optional": true
+    },
+    "eslint-plugin-astro": {
+      "optional": true
+    },
+    "@pandacss/dev": {
+      "optional": true
+    },
+    "@pandacss/eslint-plugin": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@pandacss/dev": "^1.12.1",
+    "@pandacss/eslint-plugin": "^0.3.2",
+    "@pandacss/types": "^1.12.1",
+    "@types/bun": "^1.4.2",
+    "@types/node": "^24.5.0",
+    "eslint": "^10.11.0",
+    "typescript": "^6"
+  },
+  "keywords": [
+    "eslint",
+    "eslint-config",
+    "flat-config",
+    "panda-css",
+    "astro",
+    "fullsnacklab"
+  ]
+}
