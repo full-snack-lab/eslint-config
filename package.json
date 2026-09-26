@@ -1,96 +1,31 @@
 {
-  "name": "@fullsnacklab/eslint-config",
-  "version": "0.1.0",
-  "description": "Opinionated, modular ESLint flat config — Panda CSS aware, Astro ready, TS6 first.",
+  "name": "@fullsnacklab/lint-rules",
+  "private": true,
   "type": "module",
-  "sideEffects": false,
-  "engines": {
-    "node": ">=22.12.0"
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
-    "./panda": {
-      "types": "./dist/panda/index.d.ts",
-      "import": "./dist/panda/index.js"
-    },
-    "./presets": {
-      "types": "./dist/presets/index.d.ts",
-      "import": "./dist/presets/index.js"
-    },
-    "./package.json": "./package.json"
-  },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE",
-    "docs"
+  "packageManager": "bun@1.4.2",
+  "workspaces": [
+    "packages/*"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "dev": "tsc -p tsconfig.build.json --watch",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "clean": "rm -rf dist .tsbuildinfo",
+    "build": "bun run --workspaces --if-present --parallel build",
+    "clean": "bun run --workspaces --if-present --parallel clean",
+    "typecheck": "bun run --workspaces --if-present --parallel typecheck",
+    "test": "bun run --workspaces --if-present --parallel test",
     "prelint": "bun run build",
     "lint": "eslint .",
+    "prelint:fix": "bun run build",
     "lint:fix": "eslint . --fix",
-    "test": "bun test",
-    "prepublishOnly": "bun run clean && bun run build && bun run typecheck && bun test"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "peerDependencies": {
-    "eslint": ">=10.4.0",
-    "typescript": ">=5.0.0",
-    "eslint-plugin-astro": "^3.0.0",
-    "@pandacss/eslint-plugin": "^0.3.0"
-  },
-  "peerDependenciesMeta": {
-    "typescript": {
-      "optional": true
-    },
-    "eslint-plugin-astro": {
-      "optional": true
-    },
-    "@pandacss/eslint-plugin": {
-      "optional": true
-    }
-  },
-  "dependencies": {
-    "@typescript-eslint/parser": "^8.70.0",
-    "eslint-plugin-unicorn": "^76.0.0",
-    "globals": "^17.12.0"
+    "prelint:alint": "bun run --filter @fullsnacklab/alint-config build",
+    "lint:alint": "alint .",
+    "prelint:alint:dirty": "bun run --filter @fullsnacklab/alint-config build",
+    "lint:alint:dirty": "alint --dirty",
+    "check": "bun run build && bun run typecheck && bun run test && eslint ."
   },
   "devDependencies": {
-    "@pandacss/dev": "^1.12.1",
-    "@pandacss/eslint-plugin": "^0.3.2",
-    "@pandacss/types": "^1.12.1",
-    "@types/bun": "^1.4.2",
-    "@types/node": "^24.5.0",
-    "eslint": "^10.11.0",
-    "eslint-plugin-astro": "^3.2.1",
-    "typescript": "^6"
+    "@alint-js/cli": "^0.7.1",
+    "@fullsnacklab/alint-config": "workspace:*",
+    "@fullsnacklab/eslint-config": "workspace:*",
+    "eslint": "^10.11.0"
   },
-  "keywords": [
-    "eslint",
-    "eslint-config",
-    "flat-config",
-    "panda-css",
-    "astro",
-    "fullsnacklab"
-  ],
-  "license": "UNLICENSED",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/full-snack-lab/eslint-config.git"
-  },
-  "bugs": {
-    "url": "https://github.com/full-snack-lab/eslint-config/issues"
-  },
-  "homepage": "https://github.com/full-snack-lab/eslint-config#readme"
+  "license": "UNLICENSED"
 }

@@ -1,0 +1,66 @@
+{
+  "name": "@fullsnacklab/alint-config",
+  "version": "0.1.0",
+  "description": "Shared alint configuration for model-backed JavaScript and TypeScript review.",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "dev": "tsc -p tsconfig.build.json --watch",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist .tsbuildinfo",
+    "test": "bun test",
+    "prepublishOnly": "bun run clean && bun run build && bun run typecheck && bun test"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@alint-js/cli": "^0.7.1"
+  },
+  "dependencies": {
+    "@alint-js/plugin": "^0.7.1",
+    "@alint-js/plugin-js": "^0.7.1"
+  },
+  "devDependencies": {
+    "@alint-js/cli": "^0.7.1",
+    "@types/bun": "^1.4.2",
+    "@types/node": "^24.5.0",
+    "typescript": "^6"
+  },
+  "keywords": [
+    "alint",
+    "lint",
+    "ai",
+    "code-review",
+    "fullsnacklab"
+  ],
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/full-snack-lab/lint-rules.git",
+    "directory": "packages/alint-config"
+  },
+  "bugs": {
+    "url": "https://github.com/full-snack-lab/lint-rules/issues"
+  },
+  "homepage": "https://github.com/full-snack-lab/lint-rules/tree/main/packages/alint-config#readme"
+}

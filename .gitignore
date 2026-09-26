@@ -1,5 +1,5 @@
 node_modules/
-/dist/
+/packages/*/dist/
 .tsbuildinfo
 *.log
 .DS_Store
@@ -9,3 +9,7 @@ node_modules/
 .env.*
 !.env.example
 .npm-cache
+.firecrawl/
+.alintcache
+.alint/config.toml
+.alint/plugins/store/

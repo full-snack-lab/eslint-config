@@ -4,6 +4,13 @@ All notable changes to `@fullsnacklab/eslint-config` are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Changed
+
+- Moved the package into the `lint-rules` monorepo without changing its npm
+  name or public exports.
+
 ## [0.1.0] — 2026-09-21
 
 ### Fixed
